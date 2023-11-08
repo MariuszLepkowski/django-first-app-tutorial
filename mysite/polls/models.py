@@ -1,5 +1,5 @@
-from django.db import models
-
+import datetime
+from django.utils import timezone
 # Create your models here.
 from django.db import models
 
@@ -10,6 +10,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text #The __str__ method is used to provide a textual representation of the Question object.
+
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 
 class Choice(models.Model):
