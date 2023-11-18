@@ -24,6 +24,10 @@ def show_all_questions(request):
     return render(request, "polls/all-questions.html", context)
 
 
+def about(request):
+    return render(request, "polls/about.html")
+
+
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
 
