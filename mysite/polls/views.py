@@ -4,9 +4,9 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-from .models import Question, Choice
+from .models import Question
 
 
 def index(request):
@@ -30,11 +30,8 @@ def about(request):
 
 
 def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-        choice_list = question.choice_set.all()
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist")
+    question = get_object_or_404(Question, pk=question_id)
+    choice_list = question.choice_set.all()
     return render(request, "polls/detail.html", {"question": question, "choices": choice_list})
 
 
