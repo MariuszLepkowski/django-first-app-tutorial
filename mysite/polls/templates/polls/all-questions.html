@@ -8,8 +8,8 @@
             <!-- Post preview-->
 
 
-            {% if latest_question_list %}
-            {% for question in latest_question_list %}
+            {% if all_questions_list %}
+            {% for question in all_questions_list %}
             <div class="post-preview">
                 <a href="post.html">
                     <h2 class="post-title"><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></h2>
@@ -29,10 +29,8 @@
             {% endif %}
 
 
-            <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'show_all_questions' %}">All questions →</a></div>
+
         </div>
     </div>
 </div>
-
 {% include "polls/footer.html" %}

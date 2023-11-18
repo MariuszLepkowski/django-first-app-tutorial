@@ -9,11 +9,19 @@ from .models import Question
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    latest_question_list = Question.objects.order_by("-pub_date")[:3]
     context = {
         "latest_question_list": latest_question_list,
     }
     return render(request, "polls/index.html", context)
+
+
+def show_all_questions(request):
+    all_questions_list = Question.objects.order_by("-pub_date")
+    context = {
+        "all_questions_list": all_questions_list,
+    }
+    return render(request, "polls/all-questions.html", context)
 
 
 def detail(request, question_id):

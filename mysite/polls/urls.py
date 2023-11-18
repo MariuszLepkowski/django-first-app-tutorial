@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
     # ex: /polls/
     path("", views.index, name="index"),
+    # ex: /polls/all-questions/
+    path("all-questions/", views.show_all_questions, name="show_all_questions"),
     # ex: /polls/5/
     path("<int:question_id>/", views.detail, name="detail"),
     # ex: /polls/5/results/
