@@ -22,7 +22,7 @@ class IndexView(ListView):
         return Question.objects.order_by("-pub_date")[:3]
 
 
-class AllQuestions(ListView):
+class AllQuestionsView(ListView):
     template_name = "polls/all-questions.html"
     context_object_name = "all_questions_list"
 
@@ -45,9 +45,10 @@ class Detail(DetailView):
         return context
 
 
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/results.html", {"question": question})
+class ResultsView(DetailView):
+    model = Question
+    template_name = "polls/results.html"
+    context_object_name = "question"
 
 
 def vote(request, question_id):
