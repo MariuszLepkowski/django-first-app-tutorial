@@ -6,7 +6,7 @@ app_name = "polls"
 
 urlpatterns = [
     # ex: /polls/
-    path("", views.index, name="index"),
+    path("", views.IndexView.as_view(), name="index"),
     # ex: /polls/about/
     path("about/", views.about, name="about"),
     # ex: /polls/all-questions/

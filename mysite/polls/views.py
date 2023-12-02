@@ -8,15 +8,15 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.db.models import F
 
+from django.views.generic.list import ListView
+
 from .models import Question, Choice
 
 
-def index(request):
-    latest_question_list = Question.objects.order_by("-pub_date")[:3]
-    context = {
-        "latest_question_list": latest_question_list,
-    }
-    return render(request, "polls/index.html", context)
+class IndexView(ListView):
+    model = Question
+    template_name = "polls/index.html"
+    context_object_name = "latest_question_list"
 
 
 def show_all_questions(request):
