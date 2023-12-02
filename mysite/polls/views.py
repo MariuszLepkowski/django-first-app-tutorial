@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.db.models import F
 
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Question, Choice
 
@@ -33,10 +34,20 @@ def about(request):
     return render(request, "polls/about.html")
 
 
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    choice_list = question.choice_set.all()
-    return render(request, "polls/detail.html", {"question": question, "choices": choice_list})
+# def detail(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     choice_list = question.choice_set.all()
+#     return render(request, "polls/detail.html", {"question": question, "choices": choice_list})
+
+class Detail(DetailView):
+    model = Question
+    template_name = "polls/detail.html"
+    context_object_name = "question"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['choices'] = self.object.choice_set.all()
+        return context
 
 
 def results(request, question_id):

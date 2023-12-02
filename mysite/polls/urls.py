@@ -12,7 +12,7 @@ urlpatterns = [
     # ex: /polls/all-questions/
     path("all-questions/", views.AllQuestions.as_view(), name="show_all_questions"),
     # ex: /polls/5/
-    path("<int:question_id>/", views.detail, name="detail"),
+    path("<int:pk>/", views.Detail.as_view(), name="detail"),
     # ex: /polls/5/results/
     path("<int:question_id>/results/", views.results, name="results"),
     # ex: /polls/5/vote/
