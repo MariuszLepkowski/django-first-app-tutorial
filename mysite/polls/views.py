@@ -34,11 +34,6 @@ def about(request):
     return render(request, "polls/about.html")
 
 
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     choice_list = question.choice_set.all()
-#     return render(request, "polls/detail.html", {"question": question, "choices": choice_list})
-
 class Detail(DetailView):
     model = Question
     template_name = "polls/detail.html"
