@@ -21,12 +21,12 @@ class IndexView(ListView):
         return Question.objects.order_by("-pub_date")[:3]
 
 
-def show_all_questions(request):
-    all_questions_list = Question.objects.order_by("-pub_date")
-    context = {
-        "all_questions_list": all_questions_list,
-    }
-    return render(request, "polls/all-questions.html", context)
+class AllQuestions(ListView):
+    template_name = "polls/all-questions.html"
+    context_object_name = "all_questions_list"
+
+    def get_queryset(self):
+        return Question.objects.order_by("-pub_date")
 
 
 def about(request):
