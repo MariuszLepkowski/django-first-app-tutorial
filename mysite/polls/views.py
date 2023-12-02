@@ -16,7 +16,11 @@ from .models import Question, Choice
 class IndexView(ListView):
     model = Question
     template_name = "polls/index.html"
-    context_object_name = "latest_question_list"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_question_list'] = Question.objects.order_by("-pub_date")[:3]
+        return context
 
 
 def show_all_questions(request):
