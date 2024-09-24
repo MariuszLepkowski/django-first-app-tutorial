@@ -6,4 +6,5 @@ mysite/mysite/__pycache__/
 mysite/polls/__pycache__/
 mysite/polls/migrations/__pycache__/0001_initial.cpython-310.pyc
 mysite/polls/migrations/0001_initial.py
-
+__pycache__/
+*.pyc
